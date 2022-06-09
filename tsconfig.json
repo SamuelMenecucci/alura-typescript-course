@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6", //digo qual é a versão do javascript que será gerada ao compilar
+
+    "outDir": "dist/js", //digo para onde que os arquivos que serão compilados para js irão
+    "noEmitOnError": true //não permite que o typescript gere arquivos js caso haja algum erro no arquivo ts
+  },
+  //digo o caminho que os arquivos que serão lidos pelo typescript estão. aqui digo que dentro de app, são todas as subpastas e qualquer arquivo
+  "include": ["app/**/*"]
+}
