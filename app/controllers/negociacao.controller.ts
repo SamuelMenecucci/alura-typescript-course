@@ -11,11 +11,11 @@ export class NegociacaoController {
     this._inputValor = document.querySelector("#valor");
   }
 
-  adiciona() {
+  adiciona(): void {
     const negociacao = this.criaNegociacao();
   }
 
-  criaNegociacao() {
+  criaNegociacao(): Negociacao {
     const exp = /-/g;
     //o constructor Date aceita valores separados por virgulas e o input date trás separado por hífen, por isso utilizo o replace e passo a expressão regular que criei
     const date = new Date(this._inputData.value.replace(exp, ","));
