@@ -1,5 +1,6 @@
 import { Negociacao } from "../models/Negociacao.js";
 import { Negociacoes } from "../models/Negociacoes.js";
+import { NegociacoesView } from "../views/negociacoes-view.js";
 
 export class NegociacaoController {
   private _inputData: HTMLInputElement;
@@ -7,10 +8,16 @@ export class NegociacaoController {
   private _inputValor: HTMLInputElement;
   private _negociacoes: Negociacoes = new Negociacoes();
 
+  //quando houve a instância do controller, eu armazeno a instância da view, passando o id do elemento que iria colocar o template, que foi o elemento criado no html pelo app.
+  private _negociacoesView = new NegociacoesView("#negociacoesView");
+
   constructor() {
     this._inputData = document.querySelector("#data");
     this._inputQuantidade = document.querySelector("#quantidade");
     this._inputValor = document.querySelector("#valor");
+
+    //assim que a instância do controller ocorrer e rodar, rodo o update
+    this._negociacoesView.update();
   }
 
   adiciona(): void {
