@@ -23,7 +23,7 @@ export abstract class View<T> {
 
   //passo o template para dentro do elemento que foi selecionado
   //pegando os dados que serão renderizados em tela
-  update(model: T): void {
+  public update(model: T): void {
     const template = this.template(model);
     this._elemento.innerHTML = template;
   }
