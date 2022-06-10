@@ -25,9 +25,17 @@ export class NegociacaoController {
 
   public adiciona(): void {
     const negociacao = this.criaNegociacao();
-    this._negociacoes.adiciona(negociacao);
-    this.limparFormulario();
-    this.atualizaView();
+
+    //lógica para aceitar somente dias úteis. o getDay retorna o dia da semana, começando de 0, que é domingo e indo até 6, que é sábado
+    if (negociacao.data.getDay() > 0 && negociacao.data.getDay() < 6) {
+      this._negociacoes.adiciona(negociacao);
+      this.limparFormulario();
+      this.atualizaView();
+    } else {
+      this._mensagemView.update(
+        "Apenas negociações em dias úteis são aceitas. "
+      );
+    }
   }
 
   private criaNegociacao(): Negociacao {
