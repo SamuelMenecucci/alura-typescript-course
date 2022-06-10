@@ -2,7 +2,8 @@
 
 //A view trás os métodos que serão utilizadas pelas subclasses, porém, mesmo que elas estejam utilizando os mesmos métodos, os tipos de parâmtros desses métodos são diferentes, por isso que eu utilizo o generics, passando ele entre <>, assim eu digo que esse tipo será definido na classe filha
 //esse tipo é definido na hora que eu estendo a View, e passo o tipo dentro da subclasse
-export class View<T> {
+//quando eu digo que uma classe é abstrata, significa que ela não pode ser instanciada, apenas ser utilizada por subclasses
+export abstract class View<T> {
   //crio uma propriedade que irá armazenar um elemento html
   //com o modificador de acesso protected, as propriedades são visíveis para as subclasses, ou seja, as classes que estenderem poderão ter acesso as propriedades, mas nas instâncias essa propriedade ainda continua sendo invisível
   protected _elemento: HTMLElement;
@@ -14,9 +15,11 @@ export class View<T> {
 
   //mesmo as classes que estenderem view tendo o método template, o retorno é diferente, aí que entra o polimorfismo.
   //se as filhas não chamarem o método template, o que será utilizado é o retorno que está na classe pai, que aqui está retornando um erro, mas se na classe filha esse método for chamado e o retorno for diferente, ele irá sobre escrever o retorno de erro.
-  template(model: T): string {
-    throw Error("Classe filha precisa implementar o métodos template");
-  }
+  // template(model: T): string {
+  //   throw Error("Classe filha precisa implementar o métodos template");
+  // }
+  //para que eu não precise fazer da forma a cima, posso dizer que o método é abstrato, assim, torno ele obrigatório quando alguma subclasse herdar view. da forma acima, o erro será visto apenas em run time, e aqui eu o torno visível em ambiente de desenvolvimento.
+  abstract template(mode: T): string;
 
   //passo o template para dentro do elemento que foi selecionado
   //pegando os dados que serão renderizados em tela
