@@ -23,18 +23,14 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
   }
 
-  adiciona(): void {
+  public adiciona(): void {
     const negociacao = this.criaNegociacao();
-
     this._negociacoes.adiciona(negociacao);
-    this._negociacoesView.update(this._negociacoes);
-    this._mensagemView.update("Negociação adicionada com sucesso");
-    console.log(this._negociacoes.lista());
-
     this.limparFormulario();
+    this.atualizaView();
   }
 
-  criaNegociacao(): Negociacao {
+  private criaNegociacao(): Negociacao {
     const exp = /-/g;
     //o constructor Date aceita valores separados por virgulas e o input date trás separado por hífen, por isso utilizo o replace e passo a expressão regular que criei
     const date = new Date(this._inputData.value.replace(exp, ","));
@@ -45,11 +41,16 @@ export class NegociacaoController {
     return new Negociacao(date, quantidade, valor);
   }
 
-  limparFormulario(): void {
+  private limparFormulario(): void {
     this._inputData.value = "";
     this._inputQuantidade.value = "";
     this._inputValor.value = "";
 
     this._inputData.focus();
+  }
+
+  private atualizaView(): void {
+    this._negociacoesView.update(this._negociacoes);
+    this._mensagemView.update("Negociação adicionada com sucesso");
   }
 }

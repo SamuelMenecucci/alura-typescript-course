@@ -20,10 +20,7 @@ export class NegociacoesView extends View<Negociacoes> {
           .map((element) => {
             return `
                 <tr>
-                  <td> ${
-                    //O intl é uma api de internacionalização do ES, se eu não passar nenhum parâmetro para o dateformat, ele leva em consideração a localização do usuário, pego pelo navegador.
-                    new Intl.DateTimeFormat().format(element.data)
-                  } </td>
+                  <td> ${this.formatar(element.data)} </td>
                   <td>${element.quantidade}</td>
                   <td>${element.valor}</td>
                 </tr> `;
@@ -35,5 +32,10 @@ export class NegociacoesView extends View<Negociacoes> {
         </tbody>
     </table>
     `;
+  }
+
+  private formatar(data: Date): string {
+    //O intl é uma api de internacionalização do ES, se eu não passar nenhum parâmetro para o dateformat, ele leva em consideração a localização do usuário, pego pelo navegador.
+    return new Intl.DateTimeFormat().format(data);
   }
 }
