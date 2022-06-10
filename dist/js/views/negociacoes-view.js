@@ -25,6 +25,8 @@ export class NegociacoesView extends View {
                   <td>${element.valor}</td>
                 </tr> `;
         })
+            //o método join retorna um array como uma string e não muda o array original.
+            //qualquer separador pode ser especificado, o padrão é virgula. se eu utilizar algum outro como parâmetro, passando dentro de uma string, ele que será o separador de cada elemento.
             .join("")}
           
         </tbody>

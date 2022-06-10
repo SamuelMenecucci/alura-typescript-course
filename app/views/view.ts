@@ -19,7 +19,7 @@ export abstract class View<T> {
   //   throw Error("Classe filha precisa implementar o métodos template");
   // }
   //para que eu não precise fazer da forma a cima, posso dizer que o método é abstrato, assim, torno ele obrigatório quando alguma subclasse herdar view. da forma acima, o erro será visto apenas em run time, e aqui eu o torno visível em ambiente de desenvolvimento.
-  abstract template(mode: T): string;
+  protected abstract template(mode: T): string;
 
   //passo o template para dentro do elemento que foi selecionado
   //pegando os dados que serão renderizados em tela

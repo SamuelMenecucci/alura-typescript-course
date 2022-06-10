@@ -3,7 +3,7 @@ import { View } from "./view.js";
 
 export class NegociacoesView extends View<Negociacoes> {
   //declaro o template da view, que será uma tabela
-  template(model: Negociacoes): string {
+  protected template(model: Negociacoes): string {
     return `
     <table class="table table-hover table-bordered">
         <thead>
@@ -28,6 +28,8 @@ export class NegociacoesView extends View<Negociacoes> {
                   <td>${element.valor}</td>
                 </tr> `;
           })
+          //o método join retorna um array como uma string e não muda o array original.
+          //qualquer separador pode ser especificado, o padrão é virgula. se eu utilizar algum outro como parâmetro, passando dentro de uma string, ele que será o separador de cada elemento.
           .join("")}
           
         </tbody>
