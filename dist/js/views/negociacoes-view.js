@@ -1,8 +1,5 @@
-export class NegociacoesView {
-    constructor(seletor) {
-        //pego o seletor do elemento html que será passado na instância, e com o nome dele eu armazeno na minha propriedade
-        this._elemento = document.querySelector(seletor);
-    }
+import { View } from "./view.js";
+export class NegociacoesView extends View {
     //declaro o template da view, que será uma tabela
     template(model) {
         return `
@@ -33,11 +30,5 @@ export class NegociacoesView {
         </tbody>
     </table>
     `;
-    }
-    //passo o template para dentro do elemento que foi selecionado
-    //pegando os dados que serão renderizados em tela
-    update(model) {
-        //passando para o template
-        this._elemento.innerHTML = this.template(model);
     }
 }

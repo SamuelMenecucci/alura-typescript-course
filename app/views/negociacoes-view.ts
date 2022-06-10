@@ -1,14 +1,7 @@
 import { Negociacoes } from "../models/Negociacoes.js";
+import { View } from "./view.js";
 
-export class NegociacoesView {
-  //crio uma propriedade que irá armazenar um elemento html
-  private _elemento: HTMLElement;
-
-  constructor(seletor: string) {
-    //pego o seletor do elemento html que será passado na instância, e com o nome dele eu armazeno na minha propriedade
-    this._elemento = document.querySelector(seletor);
-  }
-
+export class NegociacoesView extends View<Negociacoes> {
   //declaro o template da view, que será uma tabela
   template(model: Negociacoes): string {
     return `
@@ -40,12 +33,5 @@ export class NegociacoesView {
         </tbody>
     </table>
     `;
-  }
-
-  //passo o template para dentro do elemento que foi selecionado
-  //pegando os dados que serão renderizados em tela
-  update(model: Negociacoes): void {
-    //passando para o template
-    this._elemento.innerHTML = this.template(model);
   }
 }
