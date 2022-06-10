@@ -4,7 +4,7 @@ export class NegociacoesView {
         this._elemento = document.querySelector(seletor);
     }
     //declaro o template da view, que será uma tabela
-    template() {
+    template(model) {
         return `
     <table class="table table-hover table-bordered">
         <thead>
@@ -16,17 +16,28 @@ export class NegociacoesView {
         </thead>
 
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+        ${model
+            .lista()
+            .map((element) => {
+            return `
+                <tr>
+                  <td> ${
+            //O intl é uma api de internacionalização do ES, se eu não passar nenhum parâmetro para o dateformat, ele leva em consideração a localização do usuário, pego pelo navegador.
+            new Intl.DateTimeFormat().format(element.data)} </td>
+                  <td>${element.quantidade}</td>
+                  <td>${element.valor}</td>
+                </tr> `;
+        })
+            .join("")}
+          
         </tbody>
     </table>
     `;
     }
     //passo o template para dentro do elemento que foi selecionado
-    update() {
-        this._elemento.innerHTML = this.template();
+    //pegando os dados que serão renderizados em tela
+    update(model) {
+        //passando para o template
+        this._elemento.innerHTML = this.template(model);
     }
 }

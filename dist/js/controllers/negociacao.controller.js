@@ -10,11 +10,13 @@ export class NegociacaoController {
         this._inputQuantidade = document.querySelector("#quantidade");
         this._inputValor = document.querySelector("#valor");
         //assim que a instância do controller ocorrer e rodar, rodo o update
-        this._negociacoesView.update();
+        //passo negociacoes que é aonde contém os dados, e quero que os dados que forem inseridos sejam refletidos em tela, sendo mostrados na tabela
+        this._negociacoesView.update(this._negociacoes);
     }
     adiciona() {
         const negociacao = this.criaNegociacao();
         this._negociacoes.adiciona(negociacao);
+        this._negociacoesView.update(this._negociacoes);
         console.log(this._negociacoes.lista());
         this.limparFormulario();
     }
