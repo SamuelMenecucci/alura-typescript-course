@@ -1,3 +1,4 @@
+import { DiasDaSemana } from "../enums/dias-da-semana.js";
 import { Negociacao } from "../models/Negociacao.js";
 import { Negociacoes } from "../models/Negociacoes.js";
 import { MensagemView } from "../views/menssagem-view.js";
@@ -18,14 +19,13 @@ export class NegociacaoController {
     adiciona() {
         const negociacao = this.criaNegociacao();
         //lógica para aceitar somente dias úteis. o getDay retorna o dia da semana, começando de 0, que é domingo e indo até 6, que é sábado
-        if (negociacao.data.getDay() > 0 && negociacao.data.getDay() < 6) {
-            this._negociacoes.adiciona(negociacao);
-            this.limparFormulario();
-            this.atualizaView();
-        }
-        else {
+        if (!this.ehDiaUtil(negociacao.data)) {
             this._mensagemView.update("Apenas negociações em dias úteis são aceitas. ");
+            return;
         }
+        this._negociacoes.adiciona(negociacao);
+        this.limparFormulario();
+        this.atualizaView();
     }
     criaNegociacao() {
         const exp = /-/g;
@@ -44,5 +44,9 @@ export class NegociacaoController {
     atualizaView() {
         this._negociacoesView.update(this._negociacoes);
         this._mensagemView.update("Negociação adicionada com sucesso");
+    }
+    ehDiaUtil(data) {
+        return (data.getDay() > DiasDaSemana.DOMINGO &&
+            data.getDay() < DiasDaSemana.SABADO);
     }
 }
