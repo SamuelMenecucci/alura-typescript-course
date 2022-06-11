@@ -30,4 +30,20 @@ export class Negociacao {
   get volume(): number {
     return this._quantidade * this.valor;
   }
+
+  //o static faz o método virar um método de classe e não precisa de uma instancia para ser chamado
+  public static criaDe(
+    dataString: string,
+    quantidadeString: string,
+    valorString: string
+  ) {
+    const exp = /-/g;
+    //o constructor Date aceita valores separados por virgulas e o input date trás separado por hífen, por isso utilizo o replace e passo a expressão regular que criei
+    const date = new Date(dataString.replace(exp, ","));
+
+    const quantidade = parseInt(quantidadeString);
+    const valor = parseFloat(valorString);
+
+    return new Negociacao(date, quantidade, valor);
+  }
 }

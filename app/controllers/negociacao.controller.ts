@@ -25,7 +25,12 @@ export class NegociacaoController {
   }
 
   public adiciona(): void {
-    const negociacao = this.criaNegociacao();
+    //como o método criaDe é um método estático da classe Negociacao, não preciso instanciar a classe para poder usa-lo. Ele agora é um método de classe
+    const negociacao = Negociacao.criaDe(
+      this._inputData.value,
+      this._inputQuantidade.value,
+      this._inputValor.value
+    );
 
     //lógica para aceitar somente dias úteis. o getDay retorna o dia da semana, começando de 0, que é domingo e indo até 6, que é sábado
     if (!this.ehDiaUtil(negociacao.data)) {
@@ -37,17 +42,6 @@ export class NegociacaoController {
     this._negociacoes.adiciona(negociacao);
     this.limparFormulario();
     this.atualizaView();
-  }
-
-  private criaNegociacao(): Negociacao {
-    const exp = /-/g;
-    //o constructor Date aceita valores separados por virgulas e o input date trás separado por hífen, por isso utilizo o replace e passo a expressão regular que criei
-    const date = new Date(this._inputData.value.replace(exp, ","));
-
-    const quantidade = parseInt(this._inputQuantidade.value);
-    const valor = parseFloat(this._inputValor.value);
-
-    return new Negociacao(date, quantidade, valor);
   }
 
   private limparFormulario(): void {
