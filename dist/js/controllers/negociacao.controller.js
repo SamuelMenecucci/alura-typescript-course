@@ -6,9 +6,9 @@ import { NegociacoesView } from "../views/negociacoes-view.js";
 export class NegociacaoController {
     constructor() {
         this._negociacoes = new Negociacoes();
-        this._mensagemView = new MensagemView("#mensagemView");
         //quando houve a instância do controller, eu armazeno a instância da view, passando o id do elemento que iria colocar o template, que foi o elemento criado no html pelo app.
-        this._negociacoesView = new NegociacoesView("#negociacoesView");
+        this._negociacoesView = new NegociacoesView("#negociacoesView", true);
+        this._mensagemView = new MensagemView("#mensagemView");
         this._inputData = document.querySelector("#data");
         this._inputQuantidade = document.querySelector("#quantidade");
         this._inputValor = document.querySelector("#valor");
