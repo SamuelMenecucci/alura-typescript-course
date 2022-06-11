@@ -10,7 +10,7 @@ export abstract class View<T> {
   private _escapar = false;
 
   //pego o seletor do elemento html que será passado na instância, e com o nome dele eu armazeno na minha propriedade
-  //o ponto de interrogação em typescript diz que a propriedade pode ser opcional e não obrigatória, porém, ele não funciona no primeiro parâmetro, somente nos últimos. um parâmetro obrigatório não pode ter um parâmetro opcional antes dele.
+  //o ponto de interrogação em typescript diz que a propriedade pode ser opcional e não obrigatória. um parâmetro obrigatório não pode ter um parâmetro opcional antes dele.
   constructor(seletor: string, escapar?: boolean) {
     this._elemento = document.querySelector(seletor);
 

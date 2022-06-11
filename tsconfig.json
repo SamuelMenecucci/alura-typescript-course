@@ -4,7 +4,8 @@
 
     "outDir": "dist/js", //digo para onde que os arquivos que serão compilados para js irão
     "noEmitOnError": true, //não permite que o typescript gere arquivos js caso haja algum erro no arquivo ts
-    "noImplicitAny": true //para que o types não adote o tipo any automaticamente quando alguma variável não for tipada
+    "noImplicitAny": true, //para que o types não adote o tipo any automaticamente quando alguma variável não for tipada
+    "removeComments": true //remove os comentários na hora de compilar o código para js
   },
   //digo o caminho que os arquivos que serão lidos pelo typescript estão. aqui digo que dentro de app, são todas as subpastas e qualquer arquivo
   "include": ["app/**/*"]
