@@ -1,3 +1,4 @@
+import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
 import { DiasDaSemana } from "../enums/dias-da-semana.js";
 import { Negociacao } from "../models/Negociacao.js";
 import { Negociacoes } from "../models/Negociacoes.js";
@@ -28,6 +29,8 @@ export class NegociacaoController {
     this._negociacoesView.update(this._negociacoes);
   }
 
+  //para chamar um decorator, utilizo @nomeFunçãoDecorator
+  @logarTempoDeExecucao()
   public adiciona(): void {
     //como o método criaDe é um método estático da classe Negociacao, não preciso instanciar a classe para poder usa-lo. Ele agora é um método de classe
     const negociacao = Negociacao.criaDe(
