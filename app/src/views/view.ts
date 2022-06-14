@@ -1,5 +1,8 @@
 //classe que irá dar os métodos das views como herança, para reaproveitamento de código.
 
+import { inspect } from "../decorators/inspect.js";
+import { logarTempoDeExecucao } from "../decorators/logar-tempo-de-execucao.js";
+
 //A view trás os métodos que serão utilizadas pelas subclasses, porém, mesmo que elas estejam utilizando os mesmos métodos, os tipos de parâmtros desses métodos são diferentes, por isso que eu utilizo o generics, passando ele entre <>, assim eu digo que esse tipo será definido na classe filha
 //esse tipo é definido na hora que eu estendo a View, e passo o tipo dentro da subclasse
 //quando eu digo que uma classe é abstrata, significa que ela não pode ser instanciada, apenas ser utilizada por subclasses
@@ -33,6 +36,8 @@ export abstract class View<T> {
   //para que eu não precise fazer da forma a cima, posso dizer que o método é abstrato, assim, torno ele obrigatório quando alguma subclasse herdar view. da forma acima, o erro será visto apenas em run time, e aqui eu o torno visível em ambiente de desenvolvimento.
   protected abstract template(mode: T): string;
 
+  @inspect()
+  @logarTempoDeExecucao(true)
   //passo o template para dentro do elemento que foi selecionado
   //pegando os dados que serão renderizados em tela
   public update(model: T): void {

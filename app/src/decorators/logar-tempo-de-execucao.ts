@@ -1,3 +1,5 @@
+//decorators são funções, que irão retornar outras funções. dentro deles, temos alguns parâmetros que tem um determinado papel
+
 export function logarTempoDeExecucao(emSegundos: boolean = false) {
   return function (
     //o target pode ser duas coisas: Se o decorator for colocado em um método estático esse target é a função construtora da classe. se for colocado em um método que não é estático ele vai retornar o prototype da classe
