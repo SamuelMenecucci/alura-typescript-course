@@ -32,7 +32,7 @@ export class NegociacaoController {
 
   //para chamar um decorator, utilizo @nomeFunçãoDecorator
   @logarTempoDeExecucao()
-  @inspect()
+  @inspect
   public adiciona(): void {
     //como o método criaDe é um método estático da classe Negociacao, não preciso instanciar a classe para poder usa-lo. Ele agora é um método de classe
     const negociacao = Negociacao.criaDe(
