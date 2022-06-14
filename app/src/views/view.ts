@@ -10,21 +10,16 @@ export abstract class View<T> {
   //crio uma propriedade que irá armazenar um elemento html
   //com o modificador de acesso protected, as propriedades são visíveis para as subclasses, ou seja, as classes que estenderem poderão ter acesso as propriedades, mas nas instâncias essa propriedade ainda continua sendo invisível
   protected _elemento: HTMLElement;
-  private _escapar = false;
 
   //pego o seletor do elemento html que será passado na instância, e com o nome dele eu armazeno na minha propriedade
   //o ponto de interrogação em typescript diz que a propriedade pode ser opcional e não obrigatória. um parâmetro obrigatório não pode ter um parâmetro opcional antes dele.
-  constructor(seletor: string, escapar?: boolean) {
+  constructor(seletor: string) {
     const elemento = document.querySelector(seletor);
 
     if (elemento) {
       this._elemento = document.querySelector(seletor) as HTMLInputElement;
     } else {
       throw Error(`Seletor ${seletor} não existe no DOM`);
-    }
-
-    if (escapar) {
-      this._escapar = escapar;
     }
   }
 
@@ -43,14 +38,7 @@ export abstract class View<T> {
   public update(model: T): void {
     let template = this.template(model);
 
-    //alguns navegadores já protegem por padrão e outros não a possibilidade de colocar uma tag script dentro dessa string do template, que vai dentro do innerHTML, mas para aumentar a segurança, crio um método para que se alguém adicionar um script no código eu removo ele
-    //aqui vai ser retirado o script e tudo que tiver dentro dele
-    if (this._escapar) {
-      template = template.replace(/<script>[\s\S]*?<\/script>/, "");
-    }
-
-    //quando trabalharmos com innerHTML, o ideal é que façamos um escape da string que vamos colocar no html por questão de segurança.
-
+    //quando trabalharmos com innerHTML, o ideal é que façamos um escape da string que vamos colocar no html por questão de segurança. o meu decorator fica responsável por isso.
     this._elemento.innerHTML = template;
   }
 }

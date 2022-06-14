@@ -13,7 +13,7 @@ export class NegociacaoController {
   private _negociacoes: Negociacoes = new Negociacoes();
 
   //quando houve a instância do controller, eu armazeno a instância da view, passando o id do elemento que iria colocar o template, que foi o elemento criado no html pelo app.
-  private _negociacoesView = new NegociacoesView("#negociacoesView", true);
+  private _negociacoesView = new NegociacoesView("#negociacoesView");
 
   private _mensagemView = new MensagemView("#mensagemView");
 
