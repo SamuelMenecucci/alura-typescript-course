@@ -16,9 +16,12 @@ export class NegociacaoController {
   private _mensagemView = new MensagemView("#mensagemView");
 
   constructor() {
-    this._inputData = document.querySelector("#data");
-    this._inputQuantidade = document.querySelector("#quantidade");
-    this._inputValor = document.querySelector("#valor");
+    //como eu coloquei nas confis do typescript para que ele cheque os dados que podem ser nulos, eu preciso tratar isso. por esse motivo eu garanto o tipo que será o input, passando para ele de uma forma explicita, com o as ou com o <tipo>
+    this._inputData = <HTMLInputElement>document.querySelector("#data");
+    this._inputQuantidade = document.querySelector(
+      "#quantidade"
+    ) as HTMLInputElement;
+    this._inputValor = document.querySelector("#valor") as HTMLInputElement;
 
     //assim que a instância do controller ocorrer e rodar, rodo o update
     //passo negociacoes que é aonde contém os dados, e quero que os dados que forem inseridos sejam refletidos em tela, sendo mostrados na tabela

@@ -12,7 +12,13 @@ export abstract class View<T> {
   //pego o seletor do elemento html que será passado na instância, e com o nome dele eu armazeno na minha propriedade
   //o ponto de interrogação em typescript diz que a propriedade pode ser opcional e não obrigatória. um parâmetro obrigatório não pode ter um parâmetro opcional antes dele.
   constructor(seletor: string, escapar?: boolean) {
-    this._elemento = document.querySelector(seletor);
+    const elemento = document.querySelector(seletor);
+
+    if (elemento) {
+      this._elemento = document.querySelector(seletor) as HTMLInputElement;
+    } else {
+      throw Error(`Seletor ${seletor} não existe no DOM`);
+    }
 
     if (escapar) {
       this._escapar = escapar;

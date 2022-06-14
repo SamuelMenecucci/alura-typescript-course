@@ -16,7 +16,14 @@ body.appendChild(div);
 const controller = new NegociacaoController();
 const form = document.querySelector(".form");
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  controller.adiciona();
-});
+//como eu ativei o strictNullChecks, preciso garantir que os valores são válidos para o typescript não apontar erro, por isso eu coloquei o form dentro de um if, pois assim o typescript entende que mesmoque o form for nulo, não irá quebrar a aplicação em run time
+if (form) {
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    controller.adiciona();
+  });
+} else {
+  throw Error(
+    "Não foi possível inicializar a aplicação. Verifique se o form existe"
+  );
+}
